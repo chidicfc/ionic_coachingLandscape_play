@@ -91,8 +91,13 @@ angular.module('coachingLandscape', ['ionic', 'ngSanitize', 'ngDraggable'])
 // controller start //
 
 .controller('SignInCtrl', function($scope) {
-  $scope.onDrag = function(){
-    console.log("on drag");
+  $scope.onDragComplete=function(data,evt){
+    console.log("drag success, data:", data);
+  }
+
+
+  $scope.onDropComplete=function(data,evt){
+    console.log("drop success, data:", data);
   }
 })
 
