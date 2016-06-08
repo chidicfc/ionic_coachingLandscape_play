@@ -35,9 +35,14 @@
       <ion-view hide-nav-bar="true">
        <ion-content padding="true">
 
-         <div ng-drag="true" ng-drag-success="onDragComplete($data,$event)" ng-center-anchor="true">
-           Draggable div
-         </div>
+         <ul class="draggable-objects">
+           <li class="scope">
+             <div ng-drag="true" ng-drag-success="onDragComplete($data,$event)" ng-center-anchor="true" class="">
+               Draggable div
+             </div>
+           </li>
+         </ul>
+         <hr>
 
 
          <div ng-drop="true" ng-drop-success="onDropComplete($data,$event)" >
