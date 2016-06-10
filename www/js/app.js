@@ -50,52 +50,22 @@ angular.module('coachingLandscape', ['ionic'])
   'use strict';
   var onDrag, onRelease, dragElement, dragGesture, release, x, y, element, style, a, b;
 
-  // x = 80;
-  // y = 60;
-
   element = document.getElementById('dragElement')
   style = window.getComputedStyle(element)
 
   x = style.getPropertyValue('margin-left').split('px')[0];
   y = style.getPropertyValue('margin-top').split('px')[0];
 
-  // console.log(a);
-  // console.log(b);
-
   dragElement = angular.element(document.getElementById("dragElement"));
 
   onDrag = function (event) {
-    var deltaX, deltaY;
-
-    deltaX = event.gesture.deltaX;
-    deltaY = event.gesture.deltaY;
-
-    // console.log("dragging old values")
-    // console.log(String(x + deltaX) + 'px');
-    // console.log(String(y + deltaY) + 'px');
-    // console.log("dragging new values")
-    // console.log(String(parseFloat(a) + parseFloat(event.gesture.deltaX)) + 'px')
-    // console.log(String(parseFloat(b) + parseFloat(event.gesture.deltaY)) + 'px')
-
     dragElement.css('margin-left', String(parseFloat(x) + parseFloat(event.gesture.deltaX)) + 'px');
     dragElement.css('margin-top', String(parseFloat(y) + parseFloat(event.gesture.deltaY)) + 'px');
-
   };
 
   onRelease = function (event) {
-    // x = x + event.gesture.deltaX;
-    // y = y + event.gesture.deltaY;
-
     x = parseFloat(x) + parseFloat(event.gesture.deltaX);
     y = parseFloat(y) + parseFloat(event.gesture.deltaY);
-
-    // console.log("releasing old values")
-    // console.log(x);
-    // console.log(y);
-    // console.log("releasing new values")
-    // console.log(parseFloat(a) + parseFloat(event.gesture.deltaX))
-    // console.log(parseFloat(b) + parseFloat(event.gesture.deltaY))
-
   };
 
   dragGesture = $ionicGesture.on('drag', onDrag, dragElement);
@@ -106,6 +76,5 @@ angular.module('coachingLandscape', ['ionic'])
     $ionicGesture.off(release, 'release', onRelease);
   });
 });
-
 
 // controller end //
