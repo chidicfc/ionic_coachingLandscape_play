@@ -56,3 +56,14 @@ li {
   margin: 20px auto;
   position: relative;
 }
+
+body {
+  cursor: url('http://ionicframework.com/img/finger.png'), auto;
+}
+
+#dragElement {
+  width: 150px;
+  height: 150px;
+  background: red;
+  margin: 60px 80px;
+}

@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('coachingLandscape', ['ionic', 'ngSanitize', 'ngDraggable'])
+angular.module('coachingLandscape', ['ionic'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -45,61 +45,67 @@ angular.module('coachingLandscape', ['ionic', 'ngSanitize', 'ngDraggable'])
    $urlRouterProvider.otherwise('/sign-in');
 
 })
-// directive starts
-.directive("preLoader", function() {
-   return {
-       restrict: 'E',
-       templateUrl: 'loading.html',
-       replace: true
-   }
-})
-
-.directive("errorMessage", function() {
-   return {
-       restrict: 'E',
-       templateUrl: 'error_message.html',
-       replace: true
-   }
-})
-
-.directive('browseTo', function ($ionicGesture) {
- return {
-  restrict: 'A',
-  link: function ($scope, $element, $attrs) {
-   var handleTap = function (e) {
-    // todo: capture Google Analytics here
-    var inAppBrowser = window.open(encodeURI($attrs.browseTo), '_system');
-   };
-   var tapGesture = $ionicGesture.on('tap', handleTap, $element);
-   $scope.$on('$destroy', function () {
-    // Clean up - unbind drag gesture handler
-    $ionicGesture.off(tapGesture, 'tap', handleTap);
-   });
-  }
- }
-})
-// directive ends
-
-// filter starts
-.filter('unsafe', function ($sce) {
-    return function (val) {
-        return $sce.trustAsHtml(val);
-    };
-})
-// filter ends
-
 // controller start //
+.controller('SignInCtrl', function ($scope, $ionicGesture) {
+  'use strict';
+  var onDrag, onRelease, dragElement, dragGesture, release, x, y, element, style, a, b;
 
-.controller('SignInCtrl', function($scope) {
-  $scope.onDragComplete=function(data,evt){
-    console.log("drag success, data:", data);
-  }
+  // x = 80;
+  // y = 60;
 
+  element = document.getElementById('dragElement')
+  style = window.getComputedStyle(element)
 
-  $scope.onDropComplete=function(data,evt){
-    console.log("drop success, data:", data);
-  }
-})
+  x = style.getPropertyValue('margin-left').split('px')[0];
+  y = style.getPropertyValue('margin-top').split('px')[0];
+
+  // console.log(a);
+  // console.log(b);
+
+  dragElement = angular.element(document.getElementById("dragElement"));
+
+  onDrag = function (event) {
+    var deltaX, deltaY;
+
+    deltaX = event.gesture.deltaX;
+    deltaY = event.gesture.deltaY;
+
+    // console.log("dragging old values")
+    // console.log(String(x + deltaX) + 'px');
+    // console.log(String(y + deltaY) + 'px');
+    // console.log("dragging new values")
+    // console.log(String(parseFloat(a) + parseFloat(event.gesture.deltaX)) + 'px')
+    // console.log(String(parseFloat(b) + parseFloat(event.gesture.deltaY)) + 'px')
+
+    dragElement.css('margin-left', String(parseFloat(x) + parseFloat(event.gesture.deltaX)) + 'px');
+    dragElement.css('margin-top', String(parseFloat(y) + parseFloat(event.gesture.deltaY)) + 'px');
+
+  };
+
+  onRelease = function (event) {
+    // x = x + event.gesture.deltaX;
+    // y = y + event.gesture.deltaY;
+
+    x = parseFloat(x) + parseFloat(event.gesture.deltaX);
+    y = parseFloat(y) + parseFloat(event.gesture.deltaY);
+
+    // console.log("releasing old values")
+    // console.log(x);
+    // console.log(y);
+    // console.log("releasing new values")
+    // console.log(parseFloat(a) + parseFloat(event.gesture.deltaX))
+    // console.log(parseFloat(b) + parseFloat(event.gesture.deltaY))
+
+  };
+
+  dragGesture = $ionicGesture.on('drag', onDrag, dragElement);
+  release = $ionicGesture.on('release', onRelease, dragElement);
+
+  $scope.$on('$destroy', function () {
+    $ionicGesture.off(dragGesture, 'drag', onDrag);
+    $ionicGesture.off(release, 'release', onRelease);
+  });
+});
 
 
 // controller end //

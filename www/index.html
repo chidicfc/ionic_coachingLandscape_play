@@ -33,21 +33,10 @@
         <h1 class="title">Test Draggable</h1>
       </ion-header-bar>
       <ion-view hide-nav-bar="true">
-       <ion-content padding="true">
-
-         <ul class="draggable-objects">
-           <li class="scope">
-             <div ng-drag="true" ng-drag-success="onDragComplete($data,$event)" ng-center-anchor="true" class="">
-               Draggable div
-             </div>
-           </li>
-         </ul>
-         <hr>
+       <ion-content padding="true" scroll="false">
 
 
-         <div ng-drop="true" ng-drop-success="onDropComplete($data,$event)" >
-           Drop area
-         </div>
+         <div id="dragElement"></div>
 
       </ion-content>
      </ion-view>
