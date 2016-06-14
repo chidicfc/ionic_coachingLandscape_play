@@ -5,13 +5,11 @@ body {
 	height: 664px;
 	font-family:arial;
 	font-size:12px;
-	background: #f6f7f0;
-	margin:0;
+	margin:0 auto;
 	padding:0;
 	position: relative;
 	overflow: auto;
 }
-
 .container {
 	width:90%;
 	height:100%;
@@ -20,10 +18,14 @@ body {
 	left: 20px;
 }
 
+.has-header {
+  top: 15px;
+}
+
 /* HEXAGON STARTS HERE */
-.hex {
+.hex, .hex1 {
 	width: 9.92%;
-	height: 10.4%;
+	height: 10%;
 	background-color: #ccc;
 	background-repeat: no-repeat;
 	background-position: 50% 50%;
@@ -40,12 +42,12 @@ body {
 	border-right: 2px solid #2C4E93;
 }
 
-.hex.hex-gap {
+.hex.hex-gap, .hex1.hex-gap {
 	margin-left: 7%;
 }
 
-.hex .corner-1,
-.hex .corner-2 {
+.hex .corner-1, .hex1 .corner-1,
+.hex .corner-2, .hex1 .corner-2  {
 	position: absolute;
 	top:0;
 	left:0;
@@ -63,7 +65,7 @@ body {
 	border-right: 1.5px solid #2C4E93;
 }
 
-.hex .corner-1 {
+.hex .corner-1, .hex1 .corner-1 {
 	z-index:-1;
 	-webkit-transform: rotate(60deg);
 	-moz-transform: rotate(60deg);
@@ -72,7 +74,7 @@ body {
 	transform: rotate(60deg);
 }
 
-.hex .corner-2 {
+.hex .corner-2, .hex1 .corner-2 {
 	-webkit-transform: rotate(-60deg);
 	-moz-transform: rotate(-60deg);
 	-ms-transform: rotate(-60deg);
@@ -80,8 +82,8 @@ body {
 	transform: rotate(-60deg);
 }
 
-.hex .corner-1:before,
-.hex .corner-2:before {
+.hex .corner-1:before, .hex1 .corner-1:before,
+.hex .corner-2:before, .hex1 .corner-2:before {
 	width: 14%;
 	height:	24.8%;
   content: '';
@@ -99,7 +101,7 @@ body {
 	backface-visibility: hidden;
 }
 
-.hex .corner-1:before {
+.hex .corner-1:before, .hex1 .corner-1:before {
 	-webkit-transform: rotate(-60deg) translate(-49.5%, 0px);
 	-moz-transform: rotate(-60deg) translate(-49.5%, 0px);
 	-ms-transform: rotate(-60deg) translate(-49.5%, 0px);
@@ -112,7 +114,7 @@ body {
   transform-origin: 0 0;
 }
 
-.hex .corner-2:before {
+.hex .corner-2:before, .hex1 .corner-2:before {
 	-webkit-transform: rotate(60deg) translate(-27.3%, -6.2%);
 	-moz-transform: rotate(60deg) translate(-27.3%, -6.2%);
 	-ms-transform: rotate(60deg) translate(-27.3%, -6.2%);
@@ -122,20 +124,23 @@ body {
 }
 
 /* Custom styles*/
-.hex .inner {
+.hex .inner, .hex1 .inner {
 	color:#eee;
 }
 
-.hex h4 {
+.hex h4, .hex1 h4  {
 	font-family: 'Josefin Sans', sans-serif;
 	margin:0;
 	padding: 3px;
+  font-size: 14px;
+  font-weight: bold;
 }
 
-.hex p {
+.hex p, .hex1 p {
 	width:90%;
 	margin:1px auto;
 	font-style: italic;
+  line-height: 1
 }
 
 .think.level1 {
