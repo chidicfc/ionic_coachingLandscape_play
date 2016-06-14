@@ -47,25 +47,17 @@ angular.module('coachingLandscape', ['ionic'])
 })
 // controller start //
 .controller('SignInCtrl', function ($scope, $ionicGesture) {
-  'use strict';
-  var onDrag, onRelease, dragElement, dragGesture, release, x, y, element, style, a, b;
+  var onDrag, onRelease, dragElement, dragGesture, release, x, y, element, style;
 
-  element = document.getElementById('dragElement')
-  style = window.getComputedStyle(element)
-
-  x = style.getPropertyValue('margin-left').split('px')[0];
-  y = style.getPropertyValue('margin-top').split('px')[0];
-
-  dragElement = angular.element(document.getElementById("dragElement"));
+  element = document.querySelector(".hex")
+  dragElement = angular.element(element);
 
   onDrag = function (event) {
-    dragElement.css('margin-left', String(parseFloat(x) + parseFloat(event.gesture.deltaX)) + 'px');
-    dragElement.css('margin-top', String(parseFloat(y) + parseFloat(event.gesture.deltaY)) + 'px');
+    dragElement.css({ "transform": "translate(" + event.gesture.deltaX + "px, " + event.gesture.deltaY + "px)" });
   };
 
   onRelease = function (event) {
-    x = parseFloat(x) + parseFloat(event.gesture.deltaX);
-    y = parseFloat(y) + parseFloat(event.gesture.deltaY);
+    dragElement.css({ "transform": "translate(0)" });
   };
 
   dragGesture = $ionicGesture.on('drag', onDrag, dragElement);
@@ -76,5 +68,4 @@ angular.module('coachingLandscape', ['ionic'])
     $ionicGesture.off(release, 'release', onRelease);
   });
 });
-
 // controller end //
