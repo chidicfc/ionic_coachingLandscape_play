@@ -124,7 +124,7 @@ body {
 }
 
 /* Custom styles*/
-.hex .inner, .hex1 .inner {
+.hex.level1 .inner h4, .hex.level1 .inner p{
 	color:#eee;
 }
 
@@ -132,7 +132,7 @@ body {
 	font-family: 'Josefin Sans', sans-serif;
 	margin:0;
 	padding: 3px;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: bold;
 }
 
