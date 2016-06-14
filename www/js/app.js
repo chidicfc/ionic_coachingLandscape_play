@@ -49,7 +49,7 @@ angular.module('coachingLandscape', ['ionic'])
 .controller('SignInCtrl', function ($scope, $ionicGesture) {
   var onDrag, onRelease, dragElement, dragGesture, release, x, y, element, style;
 
-  element = document.querySelector(".hex")
+  element = document.querySelector(".hex1")
   dragElement = angular.element(element);
 
   onDrag = function (event) {

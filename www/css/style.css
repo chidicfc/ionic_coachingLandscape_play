@@ -42,6 +42,10 @@ body {
 	border-right: 2px solid #2C4E93;
 }
 
+.hex1 {
+  z-index: 1;
+}
+
 .hex.hex-gap, .hex1.hex-gap {
 	margin-left: 7%;
 }
@@ -124,7 +128,7 @@ body {
 }
 
 /* Custom styles*/
-.hex.level1 .inner h4, .hex.level1 .inner p{
+.hex.level1 .inner h4, .hex.level1 .inner p, .hex1.level1 .inner h4, .hex1.level1 .inner p{
 	color:#eee;
 }
 
