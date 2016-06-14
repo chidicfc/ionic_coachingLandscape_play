@@ -28,10 +28,10 @@
       </ion-header-bar>
       <ion-view>
        <ion-content scroll="false">
-<div class="wrapper">
+
          <div class="container" id="container">
 
-           <div class="hex1 hex-gap think level1" id="hexagon">
+           <div class="hex1 hex-gap think level1" id="hexagon" on-drag="onDrag($event)"  on-release="onRelease($event)">
          		<div class="inner">
          				<h4>Investigating</h4>
          				<p>"I seek alternatives"</p>
@@ -388,7 +388,7 @@
            </div>
 
          </div>
-</div>
+
        </ion-content>
      </ion-view>
     </script>

@@ -47,25 +47,27 @@ angular.module('coachingLandscape', ['ionic'])
 })
 // controller start //
 .controller('SignInCtrl', function ($scope, $ionicGesture) {
-  var onDrag, onRelease, dragElement, dragGesture, release, x, y, element, style;
+  var dragElement, element;
 
-  element = document.querySelector(".hex1")
-  dragElement = angular.element(element);
-
-  onDrag = function (event) {
+  $scope.onDrag = function (event) {
+    console.log("dragging");
+    console.log(event.gesture);
+    element = document.querySelector(".hex1")
+    dragElement = angular.element(element);
     dragElement.css({ "transform": "translate(" + event.gesture.deltaX + "px, " + event.gesture.deltaY + "px)" });
   };
 
-  onRelease = function (event) {
+  $scope.onRelease = function (event) {
+    console.log("releasing");
+    element = document.querySelector(".hex1")
+    dragElement = angular.element(element);
     dragElement.css({ "transform": "translate(0)" });
   };
 
-  dragGesture = $ionicGesture.on('drag', onDrag, dragElement);
-  release = $ionicGesture.on('release', onRelease, dragElement);
-
   $scope.$on('$destroy', function () {
-    $ionicGesture.off(dragGesture, 'drag', onDrag);
-    $ionicGesture.off(release, 'release', onRelease);
+    $ionicGesture.off('drag', onDrag);
+    $ionicGesture.off('release', onRelease);
   });
+
 });
 // controller end //
