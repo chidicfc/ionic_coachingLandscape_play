@@ -27,7 +27,7 @@
       </ion-header-bar>
       <ion-view>
        <ion-content scroll="false">
-
+         <section id="wrapper">
          <div class="container" id="container">
 
          	<div ng-repeat="buildingBlock in buildingBlocks track by buildingBlock.ID" class="{{ buildingBlock.class }}" id="{{ buildingBlock.ID }}"
@@ -52,8 +52,9 @@
             <div class="corner-2"></div>
           </div>
 
-      </div>
 
+        </div>
+      </section>
        </ion-content>
      </ion-view>
     </script>
