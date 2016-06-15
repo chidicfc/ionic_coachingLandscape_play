@@ -249,7 +249,7 @@ angular.module('coachingLandscape', ['ionic'])
     ]
 })
 
-.controller('SignInCtrl', function ($scope, $ionicGesture, buildingBlocksService) {
+.controller('SignInCtrl', ["$scope", "$ionicGesture", "buildingBlocksService", function ($scope, $ionicGesture, buildingBlocksService) {
   var dragElement, element;
 
   $scope.onTouch = function (event, buildingBlock) {
@@ -262,7 +262,6 @@ angular.module('coachingLandscape', ['ionic'])
 
   $scope.onDrag = function (event, buildingBlock) {
     console.log("dragging");
-    // console.log(event.gesture);
     dragElement.css({ "transform": "translate(" + event.gesture.deltaX + "px, " + event.gesture.deltaY + "px)",
                       "-webkit-transform": "translate(" + event.gesture.deltaX + "px, " + event.gesture.deltaY + "px)" });
   };
@@ -282,4 +281,73 @@ angular.module('coachingLandscape', ['ionic'])
 
   $scope.buildingBlocks = buildingBlocksService.buildingBlocks
 
-});
+  $scope.finalBuildingBlocks = [
+    {
+        "ID" : "finalBlock1",
+        "name" : "",
+        "description" : "",
+        "class" : "hex",
+        "buildingBlockID" : "",
+        "empty" : true
+    },
+    {
+        "ID" : "finalBlock2",
+        "name" : "",
+        "description" : "",
+        "class" : "hex",
+        "buildingBlockID" : "",
+        "empty" : true
+    },
+    {
+        "ID" : "finalBlock3",
+        "name" : "",
+        "description" : "",
+        "class" : "hex",
+        "buildingBlockID" : "",
+        "empty" : true
+    },
+    {
+        "ID" : "finalBlock4",
+        "name" : "",
+        "description" : "",
+        "class" : "hex",
+        "buildingBlockID" : "",
+        "empty" : true
+    },
+    {
+        "ID" : "finalBlock5",
+        "name" : "",
+        "description" : "",
+        "class" : "hex",
+        "buildingBlockID" : "",
+        "empty" : true
+    },
+    {
+        "ID" : "finalBlock6",
+        "name" : "",
+        "description" : "",
+        "class" : "hex",
+        "buildingBlockID" : "",
+        "empty" : true
+    },
+    {
+        "ID" : "finalBlock7",
+        "name" : "",
+        "description" : "",
+        "class" : "hex",
+        "buildingBlockID" : "",
+        "empty" : true
+    },
+    {
+        "ID" : "finalBlock8",
+        "name" : "",
+        "description" : "",
+        "class" : "hex",
+        "buildingBlockID" : "",
+        "empty" : true
+    }
+  ]
+
+
+
+}]);

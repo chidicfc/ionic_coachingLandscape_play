@@ -30,7 +30,7 @@
 
          <div class="container" id="container">
 
-         	<div ng-repeat="buildingBlock in buildingBlocks" class="{{ buildingBlock.class }}" id="{{ buildingBlock.ID }}"
+         	<div ng-repeat="buildingBlock in buildingBlocks track by buildingBlock.ID" class="{{ buildingBlock.class }}" id="{{ buildingBlock.ID }}"
             ng-class="{ 'hex-gap': buildingBlock.ID == 'hexagon1' || buildingBlock.ID == 'hexagon17' }" on-drag="onDrag($event, buildingBlock)"
             on-release="onRelease($event, buildingBlock)" on-touch="onTouch($event, buildingBlock)">
          		<div class="inner">
@@ -41,62 +41,17 @@
          		<div class="corner-2"></div>
          	</div>
 
-         <div class="hex hex-gap">
-       		<div class="inner">
-       		</div>
-       		<div class="corner-1"></div>
-       		<div class="corner-2"></div>
-        </div>
+          <div ng-repeat="finalBuildingBlock in finalBuildingBlocks track by finalBuildingBlock.ID" class="{{ finalBuildingBlock.class }}" id="{{ finalBuildingBlock.ID }}"
+            ng-class="{ 'hex-gap': finalBuildingBlock.ID == 'finalBlock1'}" on-drag="onDrag($event, finalBuildingBlock)"
+            on-release="onRelease($event, finalBuildingBlock)" on-touch="onTouch($event, finalBuildingBlock)">
+            <div class="inner">
+               <h4>{{ finalBuildingBlock.name }}</h4>
+               <p> {{ finalBuildingBlock.description }}</p>
+            </div>
+            <div class="corner-1"></div>
+            <div class="corner-2"></div>
+          </div>
 
-         <div class="hex">
-           <div class="inner">
-           </div>
-           <div class="corner-1"></div>
-           <div class="corner-2"></div>
-         </div>
-
-         <div class="hex">
-           <div class="inner">
-           </div>
-           <div class="corner-1"></div>
-           <div class="corner-2"></div>
-         </div>
-
-         <div class="hex">
-           <div class="inner">
-           </div>
-           <div class="corner-1"></div>
-           <div class="corner-2"></div>
-         </div>
-
-         <div class="hex">
-           <div class="inner">
-           </div>
-           <div class="corner-1"></div>
-           <div class="corner-2"></div>
-         </div>
-
-         <div class="hex">
-           <div class="inner">
-           </div>
-           <div class="corner-1"></div>
-           <div class="corner-2"></div>
-         </div>
-
-         <div class="hex">
-           <div class="inner">
-           </div>
-           <div class="corner-1"></div>
-           <div class="corner-2"></div>
-         </div>
-
-         <div class="hex">
-           <div class="inner">
-           </div>
-           <div class="corner-1"></div>
-           <div class="corner-2"></div>
-         </div>
-  
       </div>
 
        </ion-content>
