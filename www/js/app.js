@@ -45,39 +45,9 @@ angular.module('coachingLandscape', ['ionic'])
    $urlRouterProvider.otherwise('/sign-in');
 
 })
-// controller start //
-.controller('SignInCtrl', function ($scope, $ionicGesture) {
-  var dragElement, element;
 
-  $scope.onTouch = function (event, buildingBlock) {
-    console.log("touching");
-    element = document.querySelector("#" + buildingBlock.ID)
-    dragElement = angular.element(element);
-    buildingBlock.class = buildingBlock.class.replace("hex", "hex1");
-    console.log(buildingBlock.class)
-  };
-
-  $scope.onDrag = function (event, buildingBlock) {
-    console.log("dragging");
-    // console.log(event.gesture);
-    dragElement.css({ "transform": "translate(" + event.gesture.deltaX + "px, " + event.gesture.deltaY + "px)",
-                      "-webkit-transform": "translate(" + event.gesture.deltaX + "px, " + event.gesture.deltaY + "px)" });
-  };
-
-  $scope.onRelease = function (event, buildingBlock) {
-    console.log("releasing");
-    dragElement.css({ "transform": "translate(0)" });
-    buildingBlock.class = buildingBlock.class.replace("hex1", "hex");
-    console.log(buildingBlock.class)
-  };
-
-  $scope.$on('$destroy', function () {
-    $ionicGesture.off('touch', onTouch);
-    $ionicGesture.off('drag', onDrag);
-    $ionicGesture.off('release', onRelease);
-  });
-
-  $scope.buildingBlocks = [
+.service('buildingBlocksService', function() {
+  this.buildingBlocks = [
         {
             "ID" : "hexagon1",
             "name" : "Investigating",
@@ -277,6 +247,39 @@ angular.module('coachingLandscape', ['ionic'])
             "class" : "hex be level2"
         }
     ]
+})
+
+.controller('SignInCtrl', function ($scope, $ionicGesture, buildingBlocksService) {
+  var dragElement, element;
+
+  $scope.onTouch = function (event, buildingBlock) {
+    console.log("touching");
+    element = document.querySelector("#" + buildingBlock.ID)
+    dragElement = angular.element(element);
+    buildingBlock.class = buildingBlock.class.replace("hex", "hex1");
+    console.log(buildingBlock.class)
+  };
+
+  $scope.onDrag = function (event, buildingBlock) {
+    console.log("dragging");
+    // console.log(event.gesture);
+    dragElement.css({ "transform": "translate(" + event.gesture.deltaX + "px, " + event.gesture.deltaY + "px)",
+                      "-webkit-transform": "translate(" + event.gesture.deltaX + "px, " + event.gesture.deltaY + "px)" });
+  };
+
+  $scope.onRelease = function (event, buildingBlock) {
+    console.log("releasing");
+    dragElement.css({ "transform": "translate(0)" });
+    buildingBlock.class = buildingBlock.class.replace("hex1", "hex");
+    console.log(buildingBlock.class)
+  };
+
+  $scope.$on('$destroy', function () {
+    $ionicGesture.off('touch', onTouch);
+    $ionicGesture.off('drag', onDrag);
+    $ionicGesture.off('release', onRelease);
+  });
+
+  $scope.buildingBlocks = buildingBlocksService.buildingBlocks
 
 });
-// controller end //
