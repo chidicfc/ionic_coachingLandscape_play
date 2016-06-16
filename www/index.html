@@ -41,6 +41,12 @@
          		<div class="corner-2"></div>
          	</div>
 
+          <sector class="space">
+            <div class="red">
+              {{ message }}
+            </div>
+          </sector>
+
           <div ng-repeat="landscape in coachingLandscape track by landscape.ID" class="{{ landscape.class }}" id="{{ landscape.ID }}"
             ng-class="{ 'hex-gap': landscape.ID == 'landscape1'}" on-drag="onDragLandscape($event, landscape)"
             on-release="onReleaseLandscape($event, landscape)" on-touch="onTouchLandscape($event, landscape)">
@@ -51,7 +57,6 @@
             <div class="corner-1"></div>
             <div class="corner-2"></div>
           </div>
-
 
         </div>
       </section>

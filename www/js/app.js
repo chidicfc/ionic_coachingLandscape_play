@@ -327,6 +327,7 @@ angular.module('coachingLandscape', ['ionic'])
   }
 
   $scope.onTouch = function (event, buildingBlock) {
+    $scope.message = "";
     console.log("touching");
     element = document.querySelector("#" + buildingBlock.ID)
     dragElement = angular.element(element);
@@ -357,11 +358,14 @@ angular.module('coachingLandscape', ['ionic'])
         firstEmptyLandscape.buildingBlockID = buildingBlock.ID
         firstEmptyLandscape.empty = false
         // console.log(firstEmptyLandscape)
+      }else{
+        $scope.message = "Maximum blocks reached!"
       }
     }
   };
 
   $scope.onTouchLandscape = function (event, landscape) {
+    $scope.message = "";
     console.log("touching landscape");
     element = document.querySelector("#" + landscape.ID)
     dragElement = angular.element(element);

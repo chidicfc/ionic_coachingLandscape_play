@@ -21,6 +21,20 @@
   top: 15px;
 }
 
+.space{
+  display: block;
+  overflow: auto;
+  clear: both;
+  height: 40px;
+}
+
+.red {
+  color: red;
+  padding-top: 10px;
+  padding-left: 150px;
+  font-size: 14px;
+}
+
 /* HEXAGON STARTS HERE */
 .hex, .hex1 {
 	width: 9.92%;
