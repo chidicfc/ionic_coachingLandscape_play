@@ -31,7 +31,7 @@
          <div class="container" id="container">
 
          	<div ng-repeat="buildingBlock in buildingBlocks track by buildingBlock.ID" class="{{ buildingBlock.class }}" id="{{ buildingBlock.ID }}"
-            ng-class="{ 'hex-gap': buildingBlock.ID == 'hexagon1' || buildingBlock.ID == 'hexagon17' }" on-drag="onDrag($event)"
+            ng-class="{ 'hex-gap': (buildingBlock.ID == 'hexagon1' || buildingBlock.ID == 'hexagon17') && (!(buildingBlock.css.includes('hex-gap'))) }" on-drag="onDrag($event)"
             on-release="onRelease($event, buildingBlock)" on-touch="onTouch($event, buildingBlock)">
          		<div class="inner">
                <h4>{{ buildingBlock.name }}</h4>
