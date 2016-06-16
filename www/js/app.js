@@ -378,7 +378,7 @@ angular.module('coachingLandscape', ['ionic'])
       }else if (landscapeArray.length == 0){
         $scope.message = "Maximum blocks reached!"
       }else if (isDuplicateLandscape){
-        $scope.message = "Coaching Landscape already has building block: " + "'" + buildingBlock.name + "'";
+        $scope.message = "Coaching Landscape already has " + "'" + buildingBlock.name + "'";
       }
 
     }
@@ -426,6 +426,9 @@ angular.module('coachingLandscape', ['ionic'])
     $ionicGesture.off('touch', onTouch);
     $ionicGesture.off('drag', onDrag);
     $ionicGesture.off('release', onRelease);
+    $ionicGesture.off('touch', onTouchLandscape);
+    $ionicGesture.off('drag', onDragLandscape);
+    $ionicGesture.off('release', onReleaseLandscape);
   });
 
 }]);
