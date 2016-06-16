@@ -330,8 +330,12 @@ angular.module('coachingLandscape', ['ionic'])
     console.log("touching");
     element = document.querySelector("#" + buildingBlock.ID)
     dragElement = angular.element(element);
-    buildingBlock.class = buildingBlock.class.replace("hex", "hex1");
-    console.log(buildingBlock.class)
+    console.log("css");
+    console.log(event.gesture.deltaX != 0)
+    console.log("class:" + buildingBlock.class);
+    if (!(buildingBlock.class.includes("hex1"))){
+      buildingBlock.class = buildingBlock.class.replace("hex", "hex1");
+    }
   };
 
   $scope.onDrag = function (event, buildingBlock) {
@@ -342,17 +346,19 @@ angular.module('coachingLandscape', ['ionic'])
 
   $scope.onRelease = function (event, buildingBlock) {
     console.log("releasing");
-    dragElement.css({ "transform": "translate(0)" });
-    buildingBlock.class = buildingBlock.class.replace("hex1", "hex");
-    console.log(buildingBlock)
-    console.log("setting landscape")
-    var firstEmptyLandscape = getEmptyCoachingLandscape($scope.coachingLandscape)[0]
-    console.log(firstEmptyLandscape)
-    firstEmptyLandscape.name = buildingBlock.name
-    firstEmptyLandscape.description = buildingBlock.description
-    firstEmptyLandscape.class = buildingBlock.class
-    firstEmptyLandscape.buildingBlockID = buildingBlock.ID
-    firstEmptyLandscape.empty = false
+    if(event.gesture.deltaX != 0){
+      dragElement.css({ "transform": "translate(0)" });
+      buildingBlock.class = buildingBlock.class.replace("hex1", "hex");
+      console.log(buildingBlock)
+      console.log("setting landscape")
+      var firstEmptyLandscape = getEmptyCoachingLandscape($scope.coachingLandscape)[0]
+      console.log(firstEmptyLandscape)
+      firstEmptyLandscape.name = buildingBlock.name
+      firstEmptyLandscape.description = buildingBlock.description
+      firstEmptyLandscape.class = buildingBlock.class
+      firstEmptyLandscape.buildingBlockID = buildingBlock.ID
+      firstEmptyLandscape.empty = false
+    }
   };
 
   $scope.$on('$destroy', function () {

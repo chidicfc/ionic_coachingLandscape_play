@@ -42,8 +42,7 @@
          	</div>
 
           <div ng-repeat="landscape in coachingLandscape track by landscape.ID" class="{{ landscape.class }}" id="{{ landscape.ID }}"
-            ng-class="{ 'hex-gap': landscape.ID == 'landscape1'}" on-drag="onDrag($event, landscape)"
-            on-release="onRelease($event, landscape)" on-touch="onTouch($event, landscape)">
+            ng-class="{ 'hex-gap': landscape.ID == 'landscape1'}">
             <div class="inner">
                <h4>{{ landscape.name }}</h4>
                <p> {{ landscape.description }}</p>
