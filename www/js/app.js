@@ -326,6 +326,21 @@ angular.module('coachingLandscape', ['ionic'])
        return coachingLandscape.filter(checkLandscape);
   }
 
+  var checkForDuplicateLandscape = function (buildingBlock, coachingLandscape) {
+    var found = false;
+    for (var i = 0; i < coachingLandscape.length; i++) {
+      if (coachingLandscape[i].buildingBlockID == buildingBlock.ID) {
+          found = true;
+          break;
+      }
+    }
+    return found;
+  }
+
+  $scope.buildingBlocks = buildingBlocksService.buildingBlocks
+
+  $scope.coachingLandscape = buildingBlocksService.coachingLandscape
+
   $scope.onTouch = function (event, buildingBlock) {
     $scope.message = "";
     console.log("touching");
@@ -350,17 +365,22 @@ angular.module('coachingLandscape', ['ionic'])
     if(event.gesture.deltaY > 100){
       // console.log(buildingBlock)
       console.log("setting landscape")
-      if (getEmptyCoachingLandscape($scope.coachingLandscape).length != 0){
-        var firstEmptyLandscape = getEmptyCoachingLandscape($scope.coachingLandscape)[0]
+      var landscapeArray = getEmptyCoachingLandscape($scope.coachingLandscape);
+      var isDuplicateLandscape =  checkForDuplicateLandscape(buildingBlock, $scope.coachingLandscape)
+      if (landscapeArray.length && (!(isDuplicateLandscape))){
+        var firstEmptyLandscape = landscapeArray[0]
         firstEmptyLandscape.name = buildingBlock.name
         firstEmptyLandscape.description = buildingBlock.description
         firstEmptyLandscape.class = buildingBlock.class
         firstEmptyLandscape.buildingBlockID = buildingBlock.ID
         firstEmptyLandscape.empty = false
         // console.log(firstEmptyLandscape)
-      }else{
+      }else if (landscapeArray.length == 0){
         $scope.message = "Maximum blocks reached!"
+      }else if (isDuplicateLandscape){
+        $scope.message = "Coaching Landscape already has building block: " + "'" + buildingBlock.name + "'";
       }
+
     }
   };
 
@@ -407,9 +427,5 @@ angular.module('coachingLandscape', ['ionic'])
     $ionicGesture.off('drag', onDrag);
     $ionicGesture.off('release', onRelease);
   });
-
-  $scope.buildingBlocks = buildingBlocksService.buildingBlocks
-
-  $scope.coachingLandscape = buildingBlocksService.coachingLandscape
 
 }]);
