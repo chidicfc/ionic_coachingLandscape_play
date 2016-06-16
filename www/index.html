@@ -31,7 +31,7 @@
          <div class="container" id="container">
 
          	<div ng-repeat="buildingBlock in buildingBlocks track by buildingBlock.ID" class="{{ buildingBlock.class }}" id="{{ buildingBlock.ID }}"
-            ng-class="{ 'hex-gap': buildingBlock.ID == 'hexagon1' || buildingBlock.ID == 'hexagon17' }" on-drag="onDrag($event, buildingBlock)"
+            ng-class="{ 'hex-gap': buildingBlock.ID == 'hexagon1' || buildingBlock.ID == 'hexagon17' }" on-drag="onDrag($event)"
             on-release="onRelease($event, buildingBlock)" on-touch="onTouch($event, buildingBlock)">
          		<div class="inner">
                <h4>{{ buildingBlock.name }}</h4>
@@ -42,7 +42,8 @@
          	</div>
 
           <div ng-repeat="landscape in coachingLandscape track by landscape.ID" class="{{ landscape.class }}" id="{{ landscape.ID }}"
-            ng-class="{ 'hex-gap': landscape.ID == 'landscape1'}">
+            ng-class="{ 'hex-gap': landscape.ID == 'landscape1'}" on-drag="onDragLandscape($event)"
+            on-release="onReleaseLandscape($event, landscape)" on-touch="onTouchLandscape($event, landscape)">
             <div class="inner">
                <h4>{{ landscape.name }}</h4>
                <p> {{ landscape.description }}</p>

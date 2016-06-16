@@ -330,15 +330,12 @@ angular.module('coachingLandscape', ['ionic'])
     console.log("touching");
     element = document.querySelector("#" + buildingBlock.ID)
     dragElement = angular.element(element);
-    console.log("css");
-    console.log(event.gesture.deltaX != 0)
-    console.log("class:" + buildingBlock.class);
     if (!(buildingBlock.class.includes("hex1"))){
       buildingBlock.class = buildingBlock.class.replace("hex", "hex1");
     }
   };
 
-  $scope.onDrag = function (event, buildingBlock) {
+  $scope.onDrag = function (event) {
     console.log("dragging");
     dragElement.css({ "transform": "translate(" + event.gesture.deltaX + "px, " + event.gesture.deltaY + "px)",
                       "-webkit-transform": "translate(" + event.gesture.deltaX + "px, " + event.gesture.deltaY + "px)" });
@@ -358,6 +355,42 @@ angular.module('coachingLandscape', ['ionic'])
       firstEmptyLandscape.class = buildingBlock.class
       firstEmptyLandscape.buildingBlockID = buildingBlock.ID
       firstEmptyLandscape.empty = false
+    }
+  };
+
+  $scope.onTouchLandscape = function (event, landscape) {
+    console.log("touching landscape");
+    element = document.querySelector("#" + landscape.ID)
+    dragElement = angular.element(element);
+    console.log(landscape);
+    if (!(landscape.class.includes("hex1"))){
+      landscape.class = landscape.class.replace("hex", "hex1");
+    }
+  };
+
+  $scope.onDragLandscape = function (event) {
+    console.log("dragging landscape");
+    dragElement.css({ "transform": "translate(" + event.gesture.deltaX + "px, " + event.gesture.deltaY + "px)",
+                      "-webkit-transform": "translate(" + event.gesture.deltaX + "px, " + event.gesture.deltaY + "px)" });
+  };
+
+  $scope.onReleaseLandscape = function (event, landscape) {
+    console.log("releasing landscape");
+    dragElement.css({ "transform": "translate(0)" });
+    landscape.class = landscape.class.replace("hex1", "hex");
+    if ((event.gesture.deltaX != 0) && (landscape.name != "")){
+      console.log(landscape)
+      console.log("unsetting landscape")
+      landscape.name = ""
+      landscape.description = ""
+      if (landscape.ID == "landscape1"){
+        landscape.class = "hex-gap hex"
+      }else{
+        landscape.class = "hex"
+      }
+      landscape.class = "hex"
+      landscape.buildingBlockID = ""
+      landscape.empty = true
     }
   };
 
