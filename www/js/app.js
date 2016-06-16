@@ -30,19 +30,14 @@ angular.module('coachingLandscape', ['ionic'])
   var jsScrolling = (ionic.Platform.isAndroid() ) ? false : true;
   $ionicConfigProvider.scrolling.jsScrolling(jsScrolling);
 
-  // uncomment these lines
-  // $logProvider.debugEnabled(false);
-  // $compileProvider.debugInfoEnabled(false);
-  ///////////////////////////////////////////
-
   $stateProvider
-    .state('signin', {
-      url: '/sign-in',
-      templateUrl: 'templates/sign-in.html',
-      controller: 'SignInCtrl'
+    .state('home', {
+      url: '/home',
+      templateUrl: 'templates/home.html',
+      controller: 'HomeCtrl'
     })
     // default route
-   $urlRouterProvider.otherwise('/sign-in');
+   $urlRouterProvider.otherwise('/home');
 
 })
 
@@ -247,9 +242,80 @@ angular.module('coachingLandscape', ['ionic'])
             "class" : "hex be level2"
         }
     ]
+
+    this.coachingLandscape = [
+      {
+          "ID" : "landscape1",
+          "name" : "",
+          "description" : "",
+          "class" : "hex",
+          "buildingBlockID" : "",
+          "empty" : true
+      },
+      {
+          "ID" : "landscape2",
+          "name" : "",
+          "description" : "",
+          "class" : "hex",
+          "buildingBlockID" : "",
+          "empty" : true
+      },
+      {
+          "ID" : "landscape3",
+          "name" : "",
+          "description" : "",
+          "class" : "hex",
+          "buildingBlockID" : "",
+          "empty" : true
+      },
+      {
+          "ID" : "landscape4",
+          "name" : "",
+          "description" : "",
+          "class" : "hex",
+          "buildingBlockID" : "",
+          "empty" : true
+      },
+      {
+          "ID" : "landscape5",
+          "name" : "",
+          "description" : "",
+          "class" : "hex",
+          "buildingBlockID" : "",
+          "empty" : true
+      },
+      {
+          "ID" : "landscape6",
+          "name" : "",
+          "description" : "",
+          "class" : "hex",
+          "buildingBlockID" : "",
+          "empty" : true
+      },
+      {
+          "ID" : "landscape7",
+          "name" : "",
+          "description" : "",
+          "class" : "hex",
+          "buildingBlockID" : "",
+          "empty" : true
+      },
+      {
+          "ID" : "landscape8",
+          "name" : "",
+          "description" : "",
+          "class" : "hex",
+          "buildingBlockID" : "",
+          "empty" : true
+      }
+    ]
 })
 
-.controller('SignInCtrl', ["$scope", "$ionicGesture", "buildingBlocksService", function ($scope, $ionicGesture, buildingBlocksService) {
+.service('getEmptyLandscape', function() {
+
+})
+
+.controller('HomeCtrl', ["$scope", "$ionicGesture", "buildingBlocksService", function ($scope, $ionicGesture, buildingBlocksService) {
   var dragElement, element;
 
   $scope.onTouch = function (event, buildingBlock) {
@@ -281,73 +347,6 @@ angular.module('coachingLandscape', ['ionic'])
 
   $scope.buildingBlocks = buildingBlocksService.buildingBlocks
 
-  $scope.finalBuildingBlocks = [
-    {
-        "ID" : "finalBlock1",
-        "name" : "",
-        "description" : "",
-        "class" : "hex",
-        "buildingBlockID" : "",
-        "empty" : true
-    },
-    {
-        "ID" : "finalBlock2",
-        "name" : "",
-        "description" : "",
-        "class" : "hex",
-        "buildingBlockID" : "",
-        "empty" : true
-    },
-    {
-        "ID" : "finalBlock3",
-        "name" : "",
-        "description" : "",
-        "class" : "hex",
-        "buildingBlockID" : "",
-        "empty" : true
-    },
-    {
-        "ID" : "finalBlock4",
-        "name" : "",
-        "description" : "",
-        "class" : "hex",
-        "buildingBlockID" : "",
-        "empty" : true
-    },
-    {
-        "ID" : "finalBlock5",
-        "name" : "",
-        "description" : "",
-        "class" : "hex",
-        "buildingBlockID" : "",
-        "empty" : true
-    },
-    {
-        "ID" : "finalBlock6",
-        "name" : "",
-        "description" : "",
-        "class" : "hex",
-        "buildingBlockID" : "",
-        "empty" : true
-    },
-    {
-        "ID" : "finalBlock7",
-        "name" : "",
-        "description" : "",
-        "class" : "hex",
-        "buildingBlockID" : "",
-        "empty" : true
-    },
-    {
-        "ID" : "finalBlock8",
-        "name" : "",
-        "description" : "",
-        "class" : "hex",
-        "buildingBlockID" : "",
-        "empty" : true
-    }
-  ]
-
-
+  $scope.coachingLandscape = buildingBlocksService.coachingLandscape
 
 }]);

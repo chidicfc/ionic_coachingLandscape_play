@@ -21,7 +21,7 @@
   <body>
     <ion-nav-view></ion-nav-view>
 
-    <script id="templates/sign-in.html" type="text/ng-template">
+    <script id="templates/home.html" type="text/ng-template">
       <ion-header-bar class="bar-calm">
         <h1 class="title">Build My Coaching Landscape</h1>
       </ion-header-bar>
@@ -41,12 +41,12 @@
          		<div class="corner-2"></div>
          	</div>
 
-          <div ng-repeat="finalBuildingBlock in finalBuildingBlocks track by finalBuildingBlock.ID" class="{{ finalBuildingBlock.class }}" id="{{ finalBuildingBlock.ID }}"
-            ng-class="{ 'hex-gap': finalBuildingBlock.ID == 'finalBlock1'}" on-drag="onDrag($event, finalBuildingBlock)"
-            on-release="onRelease($event, finalBuildingBlock)" on-touch="onTouch($event, finalBuildingBlock)">
+          <div ng-repeat="landscape in coachingLandscape track by landscape.ID" class="{{ landscape.class }}" id="{{ landscape.ID }}"
+            ng-class="{ 'hex-gap': landscape.ID == 'landscape1'}" on-drag="onDrag($event, landscape)"
+            on-release="onRelease($event, landscape)" on-touch="onTouch($event, landscape)">
             <div class="inner">
-               <h4>{{ finalBuildingBlock.name }}</h4>
-               <p> {{ finalBuildingBlock.description }}</p>
+               <h4>{{ landscape.name }}</h4>
+               <p> {{ landscape.description }}</p>
             </div>
             <div class="corner-1"></div>
             <div class="corner-2"></div>
