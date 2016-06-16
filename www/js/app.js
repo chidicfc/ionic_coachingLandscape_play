@@ -343,18 +343,21 @@ angular.module('coachingLandscape', ['ionic'])
 
   $scope.onRelease = function (event, buildingBlock) {
     console.log("releasing");
-    if(event.gesture.deltaX != 0){
-      dragElement.css({ "transform": "translate(0)" });
-      buildingBlock.class = buildingBlock.class.replace("hex1", "hex");
-      console.log(buildingBlock)
+    console.log(event.gesture.deltaY);
+    dragElement.css({ "transform": "translate(0)" });
+    buildingBlock.class = buildingBlock.class.replace("hex1", "hex");
+    if(event.gesture.deltaY > 100){
+      // console.log(buildingBlock)
       console.log("setting landscape")
-      var firstEmptyLandscape = getEmptyCoachingLandscape($scope.coachingLandscape)[0]
-      console.log(firstEmptyLandscape)
-      firstEmptyLandscape.name = buildingBlock.name
-      firstEmptyLandscape.description = buildingBlock.description
-      firstEmptyLandscape.class = buildingBlock.class
-      firstEmptyLandscape.buildingBlockID = buildingBlock.ID
-      firstEmptyLandscape.empty = false
+      if (getEmptyCoachingLandscape($scope.coachingLandscape).length != 0){
+        var firstEmptyLandscape = getEmptyCoachingLandscape($scope.coachingLandscape)[0]
+        firstEmptyLandscape.name = buildingBlock.name
+        firstEmptyLandscape.description = buildingBlock.description
+        firstEmptyLandscape.class = buildingBlock.class
+        firstEmptyLandscape.buildingBlockID = buildingBlock.ID
+        firstEmptyLandscape.empty = false
+        // console.log(firstEmptyLandscape)
+      }
     }
   };
 
@@ -362,24 +365,25 @@ angular.module('coachingLandscape', ['ionic'])
     console.log("touching landscape");
     element = document.querySelector("#" + landscape.ID)
     dragElement = angular.element(element);
-    console.log(landscape);
     if (!(landscape.class.includes("hex1"))){
       landscape.class = landscape.class.replace("hex", "hex1");
     }
   };
 
-  $scope.onDragLandscape = function (event) {
+  $scope.onDragLandscape = function (event, landscape) {
     console.log("dragging landscape");
-    dragElement.css({ "transform": "translate(" + event.gesture.deltaX + "px, " + event.gesture.deltaY + "px)",
-                      "-webkit-transform": "translate(" + event.gesture.deltaX + "px, " + event.gesture.deltaY + "px)" });
+    if (landscape.name){
+      dragElement.css({ "transform": "translate(" + event.gesture.deltaX + "px, " + event.gesture.deltaY + "px)",
+                        "-webkit-transform": "translate(" + event.gesture.deltaX + "px, " + event.gesture.deltaY + "px)" });
+    }
   };
 
   $scope.onReleaseLandscape = function (event, landscape) {
     console.log("releasing landscape");
+    console.log(event.gesture.deltaY);
     dragElement.css({ "transform": "translate(0)" });
     landscape.class = landscape.class.replace("hex1", "hex");
-    if ((event.gesture.deltaX != 0) && (landscape.name != "")){
-      console.log(landscape)
+    if ((event.gesture.deltaY < -100) && (landscape.name)){
       console.log("unsetting landscape")
       landscape.name = ""
       landscape.description = ""
