@@ -318,6 +318,14 @@ angular.module('coachingLandscape', ['ionic'])
 .controller('HomeCtrl', ["$scope", "$ionicGesture", "buildingBlocksService", function ($scope, $ionicGesture, buildingBlocksService) {
   var dragElement, element;
 
+  var checkLandscape = function (landscape) {
+      return landscape.empty == true;
+  }
+
+  var getEmptyCoachingLandscape = function (coachingLandscape) {
+       return coachingLandscape.filter(checkLandscape);
+  }
+
   $scope.onTouch = function (event, buildingBlock) {
     console.log("touching");
     element = document.querySelector("#" + buildingBlock.ID)
@@ -336,7 +344,15 @@ angular.module('coachingLandscape', ['ionic'])
     console.log("releasing");
     dragElement.css({ "transform": "translate(0)" });
     buildingBlock.class = buildingBlock.class.replace("hex1", "hex");
-    console.log(buildingBlock.class)
+    console.log(buildingBlock)
+    console.log("setting landscape")
+    var firstEmptyLandscape = getEmptyCoachingLandscape($scope.coachingLandscape)[0]
+    console.log(firstEmptyLandscape)
+    firstEmptyLandscape.name = buildingBlock.name
+    firstEmptyLandscape.description = buildingBlock.description
+    firstEmptyLandscape.class = buildingBlock.class
+    firstEmptyLandscape.buildingBlockID = buildingBlock.ID
+    firstEmptyLandscape.empty = false
   };
 
   $scope.$on('$destroy', function () {
