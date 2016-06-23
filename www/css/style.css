@@ -195,3 +195,12 @@
 .think.level2 .inner, .be.level2 .inner, .inspire.level2 .inner, .relate.level2 .inner {
 	color: black;
 }
+
+.modal {
+  width: 800px;
+  height: 450px;
+}
+
+.modal img {
+  margin-top: 10px;
+}
