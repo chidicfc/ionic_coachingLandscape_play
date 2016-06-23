@@ -399,6 +399,7 @@ angular.module('coachingLandscape', ['ionic'])
 
   $scope.reset = function() {
     resetCoachingLandscape();
+    $scope.message = "";
   }
 
   $scope.onTouch = function (event, buildingBlock) {
