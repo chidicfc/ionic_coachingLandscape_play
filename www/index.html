@@ -33,7 +33,7 @@
 
          	<div ng-repeat="buildingBlock in buildingBlocks track by buildingBlock.ID" class="{{ buildingBlock.class }}" id="{{ buildingBlock.ID }}"
             ng-class="{ 'hex-gap': (buildingBlock.ID == 'hexagon1' || buildingBlock.ID == 'hexagon17') && (!(buildingBlock.css.includes('hex-gap'))) }" on-drag="onDrag($event)"
-            on-release="onRelease($event, buildingBlock)" on-touch="onTouch($event, buildingBlock)">
+            on-release="onRelease($event, buildingBlock)" on-touch="onTouch($event, buildingBlock)" ng-click = "openModal(buildingBlock)">
          		<div class="inner">
                <h4>{{ buildingBlock.name }}</h4>
                <p> {{ buildingBlock.description }}</p>
@@ -63,6 +63,20 @@
       </section>
        </ion-content>
      </ion-view>
+    </script>
+
+    <script id = "templates/preview.html" type = "text/ng-template">
+      <ion-modal-view>
+        <ion-header-bar>
+           <h1 class = "title">Preview of {{buildingBlock.name}}</h1>
+        </ion-header-bar>
+
+        <ion-content>
+           <div ng-click = "closeModal()">
+             <img ng-src="img/{{ buildingBlock.preview }}"/>
+           </div>
+        </ion-content>
+      </ion-modal-view>
     </script>
 
   </body>
