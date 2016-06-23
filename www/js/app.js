@@ -342,6 +342,8 @@ angular.module('coachingLandscape', ['ionic'])
           "empty" : true
       }
     ]
+
+
 })
 
 .service('getEmptyLandscape', function() {
@@ -355,8 +357,29 @@ angular.module('coachingLandscape', ['ionic'])
       return landscape.empty == true;
   }
 
+  var checkForSetLandscape = function (landscape) {
+      return landscape.empty == false;
+  }
+
   var getEmptyCoachingLandscape = function (coachingLandscape) {
        return coachingLandscape.filter(checkLandscape);
+  }
+
+  var getSetCoachingLandscape = function (coachingLandscape) {
+       return coachingLandscape.filter(checkForSetLandscape);
+  }
+
+  var resetCoachingLandscape = function () {
+    var coachingLandscapeBlocks = getSetCoachingLandscape($scope.coachingLandscape)
+    if (coachingLandscapeBlocks.length != 0){
+      for (var i = 0; i < coachingLandscapeBlocks.length; i++) {
+        coachingLandscapeBlocks[i].name = "";
+        coachingLandscapeBlocks[i].description = "";
+        coachingLandscapeBlocks[i].class = "hex";
+        coachingLandscapeBlocks[i].buildingBlockID = "";
+        coachingLandscapeBlocks[i].empty = true;
+      }
+    }
   }
 
   var checkForDuplicateLandscape = function (buildingBlock, coachingLandscape) {
@@ -373,6 +396,10 @@ angular.module('coachingLandscape', ['ionic'])
   $scope.buildingBlocks = buildingBlocksService.buildingBlocks
 
   $scope.coachingLandscape = buildingBlocksService.coachingLandscape
+
+  $scope.reset = function() {
+    resetCoachingLandscape();
+  }
 
   $scope.onTouch = function (event, buildingBlock) {
     $scope.message = "";
